@@ -1,1 +1,6 @@
-// Temporary Comment to upload directory to Git
+const db = require("../db/connection");
+
+exports.fetchArticles = () => {
+  return db.query("SELECT * FROM articles;")
+    .then(({ rows }) => rows);
+};

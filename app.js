@@ -1,11 +1,19 @@
 const express = require("express");
 const app = express();
 const db = require("./db/connection");
+const cors = require("cors");
 
+
+// Enable CORS for all routes
+app.use(cors());
+
+// Middleware to parse JSON bodies
+app.use(express.json());
+
+// Routers
 const topicsRouter = require("./routes/topics.router");
 app.use("/api/topics", topicsRouter);
 
-app.use(express.json());
 
 // Task 1: GET /api/topics
 app.get("/api/topics", (req, res) => {

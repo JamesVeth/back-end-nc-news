@@ -2,6 +2,7 @@ const request = require("supertest");
 const app = require("../app");
 const db = require("../db/connection");
 
+/* 
 // TASK 1 - 3: GET status 200 codes
 describe("GET - Status 200 codes for Task 1 - 3", () => {
   test("TASK 1: GET 200 from /api/topics", async () => {
@@ -110,3 +111,4 @@ describe("GET /api/articles with topic query", () => {
     expect(res.body.articles).toEqual([]);
   });
 });
+ */

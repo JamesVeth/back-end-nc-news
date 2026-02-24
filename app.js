@@ -14,7 +14,7 @@ app.use(express.json());
 const topicsRouter = require("./routes/topics.router");
 app.use("/api/topics", topicsRouter);
 
-
+/* 
 // Task 1: GET /api/topics
 app.get("/api/topics", (req, res) => {
   res.status(200).send({ topics: [] });
@@ -84,5 +84,6 @@ app.patch("/api/articles/:article_id", (req, res) => {
 app.delete("/api/comments/:comment_id", (req, res) => {
   res.status(204).send();
 });
+ */
 
 module.exports = app;

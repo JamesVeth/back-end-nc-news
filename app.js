@@ -14,6 +14,18 @@ app.use(express.json());
 const topicsRouter = require("./routes/topics.router");
 app.use("/api/topics", topicsRouter);
 
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).send({ msg: "Internal Server Error", error: err.message });
+});
+
+module.exports = app;
+
+
+
+
+
+
 /* 
 // Task 1: GET /api/topics
 app.get("/api/topics", (req, res) => {
@@ -86,4 +98,3 @@ app.delete("/api/comments/:comment_id", (req, res) => {
 });
  */
 
-module.exports = app;

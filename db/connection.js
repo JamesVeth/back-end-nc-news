@@ -1,26 +1,15 @@
 const { Pool } = require("pg");
-const dotenv = require("dotenv");
 
-// ==============================
-// TEMPORARY for test2 DB only
-// process.env.NODE_ENV = "test2";
-// ==============================
+let config;
 
-let envFile = ".env"; // default
-
-if (process.env.NODE_ENV === "test") {
-  envFile = ".env.test";
-} else if (process.env.NODE_ENV === "test2") {
-  envFile = ".env.test2";
-}
-
-dotenv.config({ path: envFile });
-
-const ENV = process.env.NODE_ENV || "development";
-
-let config = {};
-
-if (ENV === "development" || ENV === "test" || ENV === "test2") {
+if (process.env.DATABASE_URL) {
+  // Production / Render
+  config = {
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
+  };
+} else {
+  // Local development
   config = {
     host: process.env.PGHOST,
     user: process.env.PGUSER,
@@ -28,13 +17,7 @@ if (ENV === "development" || ENV === "test" || ENV === "test2") {
     database: process.env.PGDATABASE,
     port: process.env.PGPORT,
   };
-} else if (ENV === "production") {
-  config = {
-    connectionString: process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false },
-  };
 }
 
 const db = new Pool(config);
-
 module.exports = db;

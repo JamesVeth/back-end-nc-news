@@ -14,6 +14,15 @@ app.use(express.json());
 const topicsRouter = require("./routes/topics.router");
 app.use("/api/topics", topicsRouter);
 
+const articlesRouter = require("./routes/articles.router");
+app.use("/api/articles", articlesRouter);
+
+const commentsRouter = require("./routes/comments.router");
+app.use("/api/comments", commentsRouter);
+
+const usersRouter = require("./routes/users.router");
+app.use("/api/users", usersRouter);
+
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).send({ msg: "Internal Server Error", error: err.message });
